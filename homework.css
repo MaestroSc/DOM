@@ -2,6 +2,52 @@ body
 {
     margin: 0;
     padding: 0;
+    font-size: 14px;
+}
 
-    font-size: 12px;
+.content{
+	margin: auto;
+	width:1000px;
+}
+
+.boxM{
+	width: 350px;
+	//border: 1px solid #B8B8B8;
+	//border-radius: 12px;
+	background-color: #FCFCFC;
+	box-shadow: 0 3px 8px #BABABA;
+}
+
+.box-title{
+	padding: 5px;
+	font-weight: bold;
+	font-family: Calibri, Arial;
+	font-size: 14pt;
+	color: #1C1C1C;
+	text-align: center;
+}
+
+.box-message{
+	padding: 10px 10px 20px;
+	font-family: Calibri, Arial;
+}
+
+#btrue{
+	width:70px;
+	height: 23px;
+	margin: 5px 0px 0px 50px;
+	float:left;
+	cursor: pointer;
+}
+
+#bfalse{
+	width:70px;
+	height: 23px;
+	margin: 5px 50px 0px 0px;
+	float:right;
+	cursor: pointer;	
+}
+
+.butt{
+	height:38px;
 }

@@ -18,14 +18,14 @@ for(var i = 0; i < e.length; i++){
  */
 
 function openPopupFromLink() {
-	if (document.getElementById('popup') != null) 
-		document.getElementById('popup').parentNode.removeChild(ocument.getElementById('popup'));
+	if (document.getElementById('popup') != null) //Предотвращаем создания второго попапа
+		document.getElementById('popup').parentNode.removeChild(document.getElementById('popup'));
 
 	var dataTitle = this.getAttribute('data-title'),
 		dataMessage = this.getAttribute('data-message'),
 		getHref = this.getAttribute('href');
 
-	dataMessage = dataMessage.replace(/%s/g, getHref);
+	dataMessage = dataMessage.replace(/%s/g, getHref); //Проверяем на спец символ, и заменяем на ссылку
 
 	var goLink = function(){
 					return location.assign(getHref);
@@ -52,7 +52,7 @@ function createPopup(title, message, onOk) {
 							</div>';
 
 	boxMessage.style.position = 'absolute';
-	boxMessage.style.top = 250 + 'px';
+	boxMessage.style.top = 250 + 'px'; //выравнивание по ширине
 	boxMessage.id = 'popup';
 	boxMessage.style.left = Math.floor(document.body.clientWidth/2) - 175 + 'px';
 	document.body.appendChild(boxMessage);

@@ -4,12 +4,12 @@
  * @private
  */
 
-var e = document.getElementsByClassName('popup-link');
+var e = document.getElementsByClassName('popup-link'), i;
 
-for(var i = 0; i < e.length; i++){
+for(i = 0; i < e.length; i++){
 	e[i].onclick = function() {return false};
 	e[i].addEventListener('click', openPopupFromLink, false);
-}
+};
 
 /**
  * Получает данные из ссылки
@@ -18,8 +18,8 @@ for(var i = 0; i < e.length; i++){
  */
 
 function openPopupFromLink() {
-	if (document.getElementById('popup') != null) //Предотвращаем создания второго попапа
-		document.getElementById('popup').parentNode.removeChild(document.getElementById('popup'));
+	if (document.getElementById('popup')) //Предотвращаем создания второго попапа
+		document.body.removeChild(document.getElementById('popup'));
 
 	var dataTitle = this.getAttribute('data-title'),
 		dataMessage = this.getAttribute('data-message'),
@@ -31,7 +31,7 @@ function openPopupFromLink() {
 					return location.assign(getHref);
 				};
 	return createPopup(dataTitle, dataMessage, goLink);
-}
+};
 
 /**
  * Создаёт DOM-узел с сообщением
@@ -62,4 +62,4 @@ function createPopup(title, message, onOk) {
 		return boxMessage.parentNode.removeChild(boxMessage);
 	};
 	return true;
-}
+};

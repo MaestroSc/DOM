@@ -24,23 +24,14 @@ body
 	font-family: Calibri, Arial;
 }
 
-#btrue{
+button{
 	width:70px;
 	height: 23px;
-	margin: 5px 0px 0px 50px;
-	float:left;
+	margin: 5px 50px 0px 50px;
 	cursor: pointer;
 }
 
-#bfalse{
-	width:70px;
-	height: 23px;
-	margin: 5px 50px 0px 0px;
-	float:right;
-	cursor: pointer;	
-}
-
-.butt{
+#butt{
 	height:38px;
 }
 

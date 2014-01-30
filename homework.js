@@ -15,6 +15,13 @@ function _onMouseClick(e) {
         return openPopupFromLink(e.target);
 }
 
+function setLayer (name, text){ // Блок задания параметров popup вынесен в функцию
+	return '<div class="box-title">' + name + '</div> \
+			<div class="box-message">'+ text + '</div> \
+			<div id="butt"><button>Да</button> \
+			<button>Нет</button></div>';
+}
+
 /**
  * Получает данные из ссылки
  * на основе этих данных создаёт попап (через createPopup) и добавляет его в DOM
@@ -29,26 +36,24 @@ function openPopupFromLink(link) {
 
 	if (document.getElementById('popup')){
 		document.getElementById('popup').style.display = 'block';
-		document.getElementById('popup').innerHTML ='<div class="box-title">' + dataTitle + '</div> \
-													<div class="box-message">'+ dataMessage + '</div> \
-													<div class="butt"><button id="btrue">Да</button> \
-													<button id="bfalse">Нет</button></div>';
+		document.getElementById('popup').innerHTML = setLayer(dataTitle, dataMessage);
 	} else{
 		createPopup(dataTitle, dataMessage);
 	}
 
-	var goLink = function(){ // Функция для кнопки 'да'
+	/*var b_yes = document.getElementById('butt').firstChild, Первый вариант - обратиться к кнопке черз
+		b_no = document.getElementById('butt').lastChild;     родителя кнопок, div*/
+
+	var b_yes = document.getElementsByTagName('button')[0], //Второй вариант - обращение к кнопкам 
+		b_no = document.getElementsByTagName('button')[1];	//напрямую, через тег.
+
+	b_yes.addEventListener('click',function(){
 		return location.assign(link);
-	};
-	var noLink = function(){ // Функция для кнопки 'нет'
+	}, false);
+
+	b_no.addEventListener('click', function(){ 
 		return document.getElementById('popup').style.display = 'none'
-	};
-
-	var b_yes = document.getElementById('btrue'),
-		b_no = document.getElementById('bfalse');
-
-	b_yes.addEventListener('click', goLink, false);
-	b_no.addEventListener('click', noLink, false);
+	}, false);
 
 };
 
@@ -63,10 +68,7 @@ function openPopupFromLink(link) {
 function createPopup(title, message) {
 	var boxMessage = document.createElement('div');
 
-	boxMessage.innerHTML ='	<div class="box-title">' + title + '</div> \
-							<div class="box-message">'+ message + '</div> \
-							<div class="butt"><button id="btrue">Да</button> \
-							<button id="bfalse">Нет</button></div>';
+	boxMessage.innerHTML = setLayer(title, message);
 	boxMessage.id = 'popup';
 	return document.body.appendChild(boxMessage);
 };

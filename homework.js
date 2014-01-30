@@ -4,12 +4,16 @@
  * @private
  */
 
-var e = document.getElementsByClassName('popup-link'), i;
+document.body.onclick = function(event){
+	if (event.target.className == 'popup-link') _onMouseClick(event);
+}
 
-for(i = 0; i < e.length; i++){
-	e[i].onclick = function() {return false};
-	e[i].addEventListener('click', openPopupFromLink, false);
-};
+// Переменная e - содержит Event событие клика по ссылке с классом 'popup-link'. 
+// 'e' задана в данном шаблоне функции _onMouseClick, и не изменена :)
+function _onMouseClick(e) { 
+        if (e.preventDefault) e.preventDefault(); // Если метод существует, то отменяем его действие
+        return openPopupFromLink(e.target);
+}
 
 /**
  * Получает данные из ссылки
@@ -17,20 +21,35 @@ for(i = 0; i < e.length; i++){
  * @param {HTMLElement} link Ссылка с data-аттрибутами
  */
 
-function openPopupFromLink() {
-	if (document.getElementById('popup')) //Предотвращаем создания второго попапа
-		document.body.removeChild(document.getElementById('popup'));
+function openPopupFromLink(link) {
+	var dataTitle = link.dataset.title,
+		dataMessage = link.dataset.message;
 
-	var dataTitle = this.getAttribute('data-title'),
-		dataMessage = this.getAttribute('data-message'),
-		getHref = this.getAttribute('href');
+	dataMessage = dataMessage.replace(/'%s'/g, link); //Проверяем на спец символ, и заменяем на ссылку
 
-	dataMessage = dataMessage.replace(/%s/g, getHref); //Проверяем на спец символ, и заменяем на ссылку
+	if (document.getElementById('popup')){
+		document.getElementById('popup').style.display = 'block';
+		document.getElementById('popup').innerHTML ='<div class="box-title">' + dataTitle + '</div> \
+													<div class="box-message">'+ dataMessage + '</div> \
+													<div class="butt"><button id="btrue">Да</button> \
+													<button id="bfalse">Нет</button></div>';
+	} else{
+		createPopup(dataTitle, dataMessage);
+	}
 
-	var goLink = function(){
-					return location.assign(getHref);
-				};
-	return createPopup(dataTitle, dataMessage, goLink);
+	var goLink = function(){ // Функция для кнопки 'да'
+		return location.assign(link);
+	};
+	var noLink = function(){ // Функция для кнопки 'нет'
+		return document.getElementById('popup').style.display = 'none'
+	};
+
+	var b_yes = document.getElementById('btrue'),
+		b_no = document.getElementById('bfalse');
+
+	b_yes.addEventListener('click', goLink, false);
+	b_no.addEventListener('click', noLink, false);
+
 };
 
 /**
@@ -41,25 +60,13 @@ function openPopupFromLink() {
  * @returns {HTMLElement}
  */
 
-function createPopup(title, message, onOk) {
+function createPopup(title, message) {
 	var boxMessage = document.createElement('div');
 
-	boxMessage.innerHTML =' <div class="boxM"> \
-								<div class="box-title">' + title + '</div> \
-								<div class="box-message">'+ message + '</div> \
-								<div class="butt"><button id="btrue">Да</button> \
-								<button id="bfalse">Нет</button></div> \
-							</div>';
-
-	boxMessage.style.position = 'absolute';
-	boxMessage.style.top = 250 + 'px'; //выравнивание по ширине
+	boxMessage.innerHTML ='	<div class="box-title">' + title + '</div> \
+							<div class="box-message">'+ message + '</div> \
+							<div class="butt"><button id="btrue">Да</button> \
+							<button id="bfalse">Нет</button></div>';
 	boxMessage.id = 'popup';
-	boxMessage.style.left = Math.floor(document.body.clientWidth/2) - 175 + 'px';
-	document.body.appendChild(boxMessage);
-
-	document.getElementById('btrue').onclick = onOk;
-	document.getElementById('bfalse').onclick = function(){
-		return boxMessage.parentNode.removeChild(boxMessage);
-	};
-	return true;
+	return document.body.appendChild(boxMessage);
 };

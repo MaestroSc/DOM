@@ -10,14 +10,6 @@ body
 	width:1000px;
 }
 
-.boxM{
-	width: 350px;
-	//border: 1px solid #B8B8B8;
-	//border-radius: 12px;
-	background-color: #FCFCFC;
-	box-shadow: 0 3px 8px #BABABA;
-}
-
 .box-title{
 	padding: 5px;
 	font-weight: bold;
@@ -50,4 +42,14 @@ body
 
 .butt{
 	height:38px;
+}
+
+#popup{
+	position: absolute;
+	top: 250px;
+	left: 50%;
+	margin-left: -175px;
+	width: 350px;
+	background-color: #FCFCFC;
+	box-shadow: 0 3px 8px #BABABA;
 }

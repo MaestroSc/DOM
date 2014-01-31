@@ -6,20 +6,11 @@
 
 document.body.addEventListener('click', function(event) {
     if (event.target.className == 'popup-link') _onMouseClick(event);
-}, true)
+}, false)
 
 function _onMouseClick(e) { 
         if (e.preventDefault) e.preventDefault(); // Если метод существует, то отменяем его действие
         return openPopupFromLink(e.target);
-}
-
-function setLayer (name, text){ // Блок задания параметров popup вынесен в функцию
-	return '<div id="boxM"> \
-				<div class="box-title">' + name + '</div> \
-				<div class="box-message">'+ text + '</div> \
-				<div id="butt"><button>Да</button> \
-				<button>Нет</button></div> \
-			</div>';
 }
 
 /**
@@ -31,11 +22,12 @@ function setLayer (name, text){ // Блок задания параметров 
 function openPopupFromLink(link) {
 	var dataTitle = link.dataset.title,
 		dataMessage = link.dataset.message.replace(/'%s'/g, link),
-		popupBox = document.body.lastChild; 
+		getBox = document.getElementById('boxM');
 
-	if (document.getElementById('boxM')){
-		popupBox.style.display = 'block';
-		popupBox.innerHTML = setLayer(dataTitle, dataMessage);
+	if (getBox){
+		document.body.lastChild.style.display = 'block';
+		getBox.children[0].innerHTML = dataTitle;
+		getBox.children[1].innerHTML = dataMessage;
 	} else{
 		createPopup(dataTitle, dataMessage);
 	}
@@ -61,6 +53,11 @@ function openPopupFromLink(link) {
 function createPopup(title, message) {
 	var boxMessage = document.createElement('div');
 
-	boxMessage.innerHTML = setLayer(title, message);
+	boxMessage.innerHTML = '<div id="boxM"> \
+								<div class="box-title">' + title + '</div> \
+								<div class="box-message">'+ message + '</div> \
+								<div id="butt"><button>Да</button> \
+								<button>Нет</button></div> \
+							</div>';
 	return document.body.appendChild(boxMessage);
 };

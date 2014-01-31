@@ -1,0 +1,100 @@
+[33mcommit 8c7d95a820dcd9bd05856a7f0dbb98f26b23f7a1[m
+Author: Vitaliy Cherkov <MaestroCrimea@yandex.ua>
+Date:   Fri Jan 31 22:54:52 2014 +0200
+
+    Popup без id
+
+[33mcommit 07dfb4595a74901cfbb2e98f07715af40d958ded[m
+Author: Vitaliy Cherkov <MaestroCrimea@yandex.ua>
+Date:   Fri Jan 31 21:57:36 2014 +0200
+
+    Изменение способа редактирования содержимого popup
+
+[33mcommit 1cf427240449d10cd1111d34658ee4a6d1ec17bd[m
+Author: Vitaliy Cherkov <MaestroCrimea@yandex.ua>
+Date:   Fri Jan 31 02:21:07 2014 +0200
+
+    Убран id 'popup', оптимизация
+
+[33mcommit 37bece29d6ff5ba98d0e0dea3a6454c2ca7a3bf7[m
+Author: Vitaliy Cherkov <MaestroCrimea@yandex.ua>
+Date:   Thu Jan 30 16:32:05 2014 +0200
+
+    Функция разметки 'popup', оптимизация
+
+[33mcommit 89f018885242c8a153afe89f79442aafe4e97cf0[m
+Author: Vtaliy Cherkov <MaestroCrimea@yandex.ua>
+Date:   Thu Jan 30 15:12:27 2014 +0200
+
+    Исправлены замечания, обновлена структура
+
+[33mcommit 05fab033d2647eb52b50595dcb2039a3468b6a47[m
+Author: Vitaliy <MaestroCrimea@yandex.ua>
+Date:   Tue Jan 28 22:03:02 2014 +0200
+
+    Delete file
+
+[33mcommit 6ee6950de20e9e303f431e47b087edf22d4edf30[m
+Author: Vitaliy Cherkov <MaestroCrimea@yandex.ua>
+Date:   Tue Jan 28 22:00:09 2014 +0200
+
+    Final version
+
+[33mcommit e46175b733fb24d1361db964cbb8ce6825899d9f[m
+Author: Vitaliy Cherkov <MaestroCrimea@yandex.ua>
+Date:   Tue Jan 28 21:32:25 2014 +0200
+
+    Добавил описание
+
+[33mcommit 888fbc7ea73ba8f1ada301aff4cf934400e46389[m
+Author: Vitaliy Cherkov <MaestroCrimea@yandex.ua>
+Date:   Tue Jan 28 21:14:18 2014 +0200
+
+    Решение задания
+
+[33mcommit 61763f6c10d85c098e3c9b6954566b729c601a80[m
+Author: Сергей Сергеев <gurugray@yandex-team.ru>
+Date:   Sat Jan 25 16:34:16 2014 +0200
+
+    README: добавить второй пример
+    
+    Добавил второй пример для демонстрации различного типа попапов
+
+[33mcommit 2c0ce60127b9610ff90ab253a5e284dbdd50ac3f[m
+Author: Sergey Sergeev <gurugray@yandex.ru>
+Date:   Sat Jan 25 16:25:08 2014 +0200
+
+    README: опечатка
+
+[33mcommit d0698550c8c5e7a01dd98b6148d20e815ae89d75[m
+Author: Sergey Sergeev <gurugray@yandex.ru>
+Date:   Sat Jan 25 16:24:18 2014 +0200
+
+    README: внешний вид не обязателен
+    
+    Внешний вид может быть на усмотрение разработчика.
+    Текущая формулировка этого не предусматривает.
+
+[33mcommit 4495a2ae481534f1b9beae343a3742a6e8774ece[m
+Author: cyn <cyn@yandex-team.ru>
+Date:   Sat Jan 25 15:43:24 2014 +0200
+
+    Отредактировал описание
+
+[33mcommit e0105322e6832ab69e436a58d20db24e8ec1841b[m
+Author: Dmitriy Lisitsyn <cyn@yandex-team.ru>
+Date:   Sat Jan 25 15:00:22 2014 +0200
+
+    Добавил картинку к описанию
+
+[33mcommit 5e44cd324d3607cdf1a3a804a5629204bb09b79c[m
+Author: cyn <cyn@yandex-team.ru>
+Date:   Sat Jan 25 14:44:09 2014 +0200
+
+    readme
+
+[33mcommit 5af6d5eb28d22f9aca38913def0f05e40e6bbbd0[m
+Author: Dmitriy Lisitsyn <cyn@yandex-team.ru>
+Date:   Sat Jan 25 14:39:49 2014 +0200
+
+    Заготовка

@@ -24,21 +24,17 @@ function openPopupFromLink(link) {
 	var dataTitle = link.dataset.title,
 		dataMessage = link.dataset.message.replace(/'%s'/g, link);
 
+	function onOk (){
+		return location.assign(link);
+	}
+
 	if (popupAdress != undefined){
 		popupAdress.style.display = 'block';
 		popupAdress.children[0].innerHTML = dataTitle;
 		popupAdress.children[1].innerHTML = dataMessage;
 	} else{
-		createPopup(dataTitle, dataMessage);
+		createPopup(dataTitle, dataMessage, onOk);
 	}
-
-	popupAdress.children[2].children[0].addEventListener('click',function(){
-		return location.assign(link);
-	}, false);
-
-	popupAdress.children[2].children[1].addEventListener('click', function(){ 
-		return popupAdress.style.display = 'none'
-	}, false);
 };
 
 /**
@@ -49,7 +45,7 @@ function openPopupFromLink(link) {
  * @returns {HTMLElement}
  */
 
-function createPopup(title, message) {
+function createPopup(title, message, onOk) {
 	var boxMessage = document.createElement('div');
 	boxMessage.className = 'boxM';
 	boxMessage.innerHTML = '<div class="box-title">' + title + '</div> \
@@ -58,4 +54,10 @@ function createPopup(title, message) {
 							<button>Нет</button></div>';
 	document.body.appendChild(boxMessage);
 	popupAdress = document.body.lastChild;
+
+	popupAdress.children[2].children[1].addEventListener('click', function(){ 
+		return popupAdress.style.display = 'none'
+	}, false);
+
+	popupAdress.children[2].children[0].addEventListener('click', onOk , false);
 };

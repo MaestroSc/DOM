@@ -3,6 +3,7 @@
  * @param {Event} e событие клика
  * @private
  */
+var popupAdress;
 
 document.body.addEventListener('click', function(event) {
     if (event.target.className == 'popup-link') _onMouseClick(event);
@@ -21,25 +22,23 @@ function _onMouseClick(e) {
 
 function openPopupFromLink(link) {
 	var dataTitle = link.dataset.title,
-		dataMessage = link.dataset.message.replace(/'%s'/g, link),
-		getBox = document.getElementById('boxM');
+		dataMessage = link.dataset.message.replace(/'%s'/g, link);
 
-	if (getBox){
-		document.body.lastChild.style.display = 'block';
-		getBox.children[0].innerHTML = dataTitle;
-		getBox.children[1].innerHTML = dataMessage;
+	if (popupAdress != undefined){
+		popupAdress.style.display = 'block';
+		popupAdress.children[0].innerHTML = dataTitle;
+		popupAdress.children[1].innerHTML = dataMessage;
 	} else{
 		createPopup(dataTitle, dataMessage);
 	}
 
-	document.getElementsByTagName('button')[0].addEventListener('click',function(){
+	popupAdress.children[2].children[0].addEventListener('click',function(){
 		return location.assign(link);
 	}, false);
 
-	document.getElementsByTagName('button')[1].addEventListener('click', function(){ 
-		return document.body.lastChild.style.display = 'none'
+	popupAdress.children[2].children[1].addEventListener('click', function(){ 
+		return popupAdress.style.display = 'none'
 	}, false);
-
 };
 
 /**
@@ -52,12 +51,11 @@ function openPopupFromLink(link) {
 
 function createPopup(title, message) {
 	var boxMessage = document.createElement('div');
-
-	boxMessage.innerHTML = '<div id="boxM"> \
-								<div class="box-title">' + title + '</div> \
-								<div class="box-message">'+ message + '</div> \
-								<div id="butt"><button>Да</button> \
-								<button>Нет</button></div> \
-							</div>';
-	return document.body.appendChild(boxMessage);
+	boxMessage.className = 'boxM';
+	boxMessage.innerHTML = '<div class="box-title">' + title + '</div> \
+							<div class="box-message">'+ message + '</div> \
+							<div id="butt"><button>Да</button> \
+							<button>Нет</button></div>';
+	document.body.appendChild(boxMessage);
+	popupAdress = document.body.lastChild;
 };

@@ -3,7 +3,7 @@
  * @param {Event} e событие клика
  * @private
  */
-var popupAdress;
+var popupAdress, hrefWay;
 
 document.body.addEventListener('click', function(event) {
     if (event.target.className == 'popup-link') _onMouseClick(event);
@@ -24,18 +24,17 @@ function openPopupFromLink(link) {
 	var dataTitle = link.dataset.title,
 		dataMessage = link.dataset.message.replace(/'%s'/g, link);
 
-	function onOk (){
-		return location.assign(link);
-	}
+	hrefWay = link;
 
 	if (popupAdress != undefined){
 		popupAdress.style.display = 'block';
 		popupAdress.children[0].innerHTML = dataTitle;
 		popupAdress.children[1].innerHTML = dataMessage;
 	} else{
-		createPopup(dataTitle, dataMessage, onOk);
+		createPopup(dataTitle, dataMessage);
 	}
 };
+
 
 /**
  * Создаёт DOM-узел с сообщением
@@ -45,7 +44,7 @@ function openPopupFromLink(link) {
  * @returns {HTMLElement}
  */
 
-function createPopup(title, message, onOk) {
+function createPopup(title, message) {
 	var boxMessage = document.createElement('div');
 	boxMessage.className = 'boxM';
 	boxMessage.innerHTML = '<div class="box-title">' + title + '</div> \
@@ -59,5 +58,7 @@ function createPopup(title, message, onOk) {
 		return popupAdress.style.display = 'none'
 	}, false);
 
-	popupAdress.children[2].children[0].addEventListener('click', onOk , false);
+	popupAdress.children[2].children[0].addEventListener('click', function(){
+		return location.assign(hrefWay);
+	} , false);
 };

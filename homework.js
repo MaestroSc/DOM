@@ -3,7 +3,7 @@
  * @param {Event} e событие клика
  * @private
  */
-var popupAdress, hrefWay;
+var popupAdress = {};
 
 document.body.addEventListener('click', function(event) {
     if (event.target.className == 'popup-link') _onMouseClick(event);
@@ -24,12 +24,12 @@ function openPopupFromLink(link) {
 	var dataTitle = link.dataset.title,
 		dataMessage = link.dataset.message.replace(/'%s'/g, link);
 
-	hrefWay = link;
+	popupAdress.hrefWay = link;
 
-	if (popupAdress != undefined){
-		popupAdress.style.display = 'block';
-		popupAdress.children[0].innerHTML = dataTitle;
-		popupAdress.children[1].innerHTML = dataMessage;
+	if (popupAdress.way != undefined){
+		popupAdress.way.style.display = 'block';
+		popupAdress.way.children[0].innerHTML = dataTitle;
+		popupAdress.way.children[1].innerHTML = dataMessage;
 	} else{
 		createPopup(dataTitle, dataMessage);
 	}
@@ -52,13 +52,13 @@ function createPopup(title, message) {
 							<div id="butt"><button>Да</button> \
 							<button>Нет</button></div>';
 	document.body.appendChild(boxMessage);
-	popupAdress = document.body.lastChild;
+	popupAdress.way = document.body.lastChild;
 
-	popupAdress.children[2].children[1].addEventListener('click', function(){ 
-		return popupAdress.style.display = 'none'
+	popupAdress.way.children[2].children[1].addEventListener('click', function(){ 
+		return popupAdress.way.style.display = 'none'
 	}, false);
 
-	popupAdress.children[2].children[0].addEventListener('click', function(){
-		return location.assign(hrefWay);
+	popupAdress.way.children[2].children[0].addEventListener('click', function(){
+		return location.assign(popupAdress.hrefWay);
 	} , false);
 };
